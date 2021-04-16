@@ -4,24 +4,35 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = "me";
-export const siteTitle = "Next.js Sample Website";
+const name = "Lee Jian Howe";
+export const siteTitle = "Lee Jian Howe";
 export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
+        <meta name="description" content="my personal website for projects and blog post" />
       </Head>
+      <nav class="navbar">
+        <span class="navbar-brand mb-0 h1">Lee Jian Howe</span>
+        <ul className="nav justify-content-end">
+          <li class="nav-item">
+            <Link href="/">
+              <a class="nav-link jh-nav-link">About</a>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link href="/blog">
+              <a class="nav-link jh-nav-link">Blog</a>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link href="/projects">
+              <a class="nav-link jh-nav-link">Projects</a>
+            </Link>
+          </li>
+        </ul>
+      </nav>
       <header className={styles.header}>
         {home ? (
           <>
@@ -33,7 +44,6 @@ export default function Layout({ children, home }) {
               width={144}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
           <>
@@ -49,22 +59,10 @@ export default function Layout({ children, home }) {
                 />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
           </>
         )}
       </header>
       <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
     </div>
   );
 }
